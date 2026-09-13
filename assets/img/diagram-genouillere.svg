@@ -1,0 +1,12 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coupe schématique d'une genouillère">
+  <path d="M150 40 C 110 40 90 80 95 120 C 60 130 55 170 70 200 C 85 225 120 235 150 230 C 190 240 235 230 250 200 C 265 170 255 135 225 120 C 232 80 210 40 170 40 Z"
+    fill="none" stroke="#1E2023" stroke-width="3"/>
+  <!-- knee cap circle -->
+  <circle cx="160" cy="140" r="26" fill="none" stroke="#C41E3A" stroke-width="3"/>
+  <!-- compression bands -->
+  <path d="M95 100 C 130 92 190 92 225 100" fill="none" stroke="#1E2023" stroke-width="1.5" opacity="0.6"/>
+  <path d="M78 190 C 130 205 190 205 245 190" fill="none" stroke="#1E2023" stroke-width="1.5" opacity="0.6"/>
+  <!-- support arrows -->
+  <line x1="160" y1="200" x2="160" y2="165" stroke="#1E2023" stroke-width="2.5"/>
+  <path d="M152 175 L160 165 L168 175" fill="none" stroke="#1E2023" stroke-width="2.5"/>
+</svg>

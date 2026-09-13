@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'un crochet de tirage">
+  <!-- bar -->
+  <circle cx="300" cy="90" r="20" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <!-- hook -->
+  <path d="M300 110 v50 a30 30 0 0 1 -30 30 h-10" fill="none" stroke="#C41E3A" stroke-width="6" stroke-linecap="round"/>
+  <!-- strap -->
+  <path d="M260 190 h-30 a18 18 0 0 0 -18 18 v40" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <!-- wrist loop -->
+  <ellipse cx="150" cy="215" rx="34" ry="18" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <line x1="180" y1="200" x2="192" y2="248" stroke="#1E2023" stroke-width="3"/>
+</svg>
