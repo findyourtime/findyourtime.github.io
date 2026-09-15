@@ -46,11 +46,16 @@
     <div class="container mise-en-page-catalogue">
       <aside class="filtres" aria-label="Filtres du catalogue">
         <div id="filtres-dynamiques"></div>
-        <button type="button" class="reinit" id="reinit-filtres">Réinitialiser les filtres</button>
+        <button type="button" class="reinit" id="reinit-filtres" hidden>Réinitialiser les filtres</button>
       </aside>
       <div>
-        <p class="compteur-resultats" id="compteur-resultats">Chargement…</p>
-        <div class="grille-produits" id="grille-produits"></div>
+        <div class="filtres-actifs" id="filtres-actifs"></div>
+        <p class="compteur-resultats" id="compteur-resultats">Chargement du catalogue…</p>
+        <div class="grille-produits" id="grille-produits">
+          <div class="squelette-carte"><div class="vignette squelette"></div><div class="ligne squelette large"></div><div class="ligne squelette court"></div></div>
+          <div class="squelette-carte"><div class="vignette squelette"></div><div class="ligne squelette large"></div><div class="ligne squelette court"></div></div>
+          <div class="squelette-carte"><div class="vignette squelette"></div><div class="ligne squelette large"></div><div class="ligne squelette court"></div></div>
+        </div>
       </div>
     </div>
   </section>
