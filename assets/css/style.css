@@ -188,7 +188,7 @@ header.site.scrolled .nav-wrap{ padding-block:11px; }
   display:flex; align-items:center;
 }
 .logo svg{ height:26px; width:auto; display:block; overflow:visible; }
-.logo svg g:first-of-type{ transition:transform 0.3s var(--ressort); transform-origin:50px 50px; }
+.logo svg g:first-of-type{ transition:transform 0.3s var(--ressort); transform-origin:135px 99px; }
 a.logo:hover svg g:first-of-type{ transform:scale(1.15) rotate(-4deg); }
 @media (min-width:640px){ .logo svg{ height:30px; } }
 
