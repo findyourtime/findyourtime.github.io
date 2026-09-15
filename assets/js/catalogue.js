@@ -11,7 +11,6 @@
   var grille = document.getElementById('grille-produits');
   var compteur = document.getElementById('compteur-resultats');
   var zoneFiltres = document.getElementById('filtres-dynamiques');
-  var zoneFiltresActifs = document.getElementById('filtres-actifs');
   var boutonReinit = document.getElementById('reinit-filtres');
 
   var produits = [];
@@ -37,89 +36,36 @@
     return new URLSearchParams(window.location.search);
   }
 
-  // Compte combien de produits correspondraient si on ajoutait ce filtre,
-  // en tenant compte des filtres déjà actifs dans les AUTRES groupes.
-  function compterAvec(groupe, valeur){
-    return produits.filter(function(p){
-      var okCategorie = !etat.categorie.size || etat.categorie.has(p.categorie) || (groupe === 'categorie' && p.categorie === valeur);
-      var okEpaisseur = !etat.epaisseur.size || etat.epaisseur.has(epaisseurDe(p)) || (groupe === 'epaisseur' && epaisseurDe(p) === valeur);
-      var okHomologation = !etat.homologation.size || etat.homologation.has(classerHomologation(p.homologation)) || (groupe === 'homologation' && classerHomologation(p.homologation) === valeur);
-      if(groupe === 'categorie') return p.categorie === valeur && okEpaisseur && okHomologation;
-      if(groupe === 'epaisseur') return epaisseurDe(p) === valeur && okCategorie && okHomologation;
-      return classerHomologation(p.homologation) === valeur && okCategorie && okEpaisseur;
-    }).length;
-  }
-
-  function chip(groupe, valeur, libelle){
-    var actif = etat[groupe].has(valeur);
-    var n = compterAvec(groupe, valeur);
-    return (
-      '<button type="button" class="chip'+(actif ? ' actif' : '')+'" role="switch" aria-checked="'+actif+'" data-groupe="'+groupe+'" data-valeur="'+valeur+'">' +
-        libelle + ' <span class="n">'+n+'</span>' +
-      '</button>'
-    );
-  }
-
   function construireFiltres(){
     var epaisseurs = Array.from(new Set(produits.map(epaisseurDe).filter(Boolean)))
       .sort(function(a,b){ return parseFloat(a) - parseFloat(b); });
     var homologations = Array.from(new Set(produits.map(function(p){ return classerHomologation(p.homologation); })));
 
     var html = '';
-    html += '<fieldset><legend>Catégorie</legend><div class="chips">';
+    html += '<fieldset><legend>Catégorie</legend>';
     Object.keys(LABELS_CATEGORIE).forEach(function(cle){
-      html += chip('categorie', cle, LABELS_CATEGORIE[cle]);
+      html += '<label><input type="checkbox" data-groupe="categorie" value="'+cle+'"> '+LABELS_CATEGORIE[cle]+'</label>';
     });
-    html += '</div></fieldset>';
+    html += '</fieldset>';
 
-    html += '<fieldset><legend>Épaisseur</legend><div class="chips">';
+    html += '<fieldset><legend>Épaisseur</legend>';
     epaisseurs.forEach(function(v){
-      html += chip('epaisseur', v, v);
+      html += '<label><input type="checkbox" data-groupe="epaisseur" value="'+v+'"> '+v+'</label>';
     });
-    html += '</div></fieldset>';
+    html += '</fieldset>';
 
-    html += '<fieldset><legend>Homologation</legend><div class="chips">';
+    html += '<fieldset><legend>Homologation</legend>';
     homologations.forEach(function(v){
-      html += chip('homologation', v, LABELS_HOMOLOGATION[v]);
+      html += '<label><input type="checkbox" data-groupe="homologation" value="'+v+'"> '+LABELS_HOMOLOGATION[v]+'</label>';
     });
-    html += '</div></fieldset>';
+    html += '</fieldset>';
 
     zoneFiltres.innerHTML = html;
 
-    zoneFiltres.querySelectorAll('.chip').forEach(function(bouton){
-      bouton.addEventListener('click', function(){
-        var groupe = bouton.getAttribute('data-groupe');
-        var valeur = bouton.getAttribute('data-valeur');
-        if(etat[groupe].has(valeur)){ etat[groupe].delete(valeur); } else { etat[groupe].add(valeur); }
-        construireFiltres();
-        rendre();
-      });
-    });
-  }
-
-  function libelleFiltre(groupe, valeur){
-    if(groupe === 'categorie') return LABELS_CATEGORIE[valeur];
-    if(groupe === 'homologation') return LABELS_HOMOLOGATION[valeur];
-    return valeur;
-  }
-
-  function rendreFiltresActifs(){
-    var pilules = [];
-    ['categorie','epaisseur','homologation'].forEach(function(groupe){
-      etat[groupe].forEach(function(valeur){
-        pilules.push(
-          '<span class="pilule-filtre">' + libelleFiltre(groupe, valeur) +
-            '<button type="button" data-retirer-groupe="'+groupe+'" data-retirer-valeur="'+valeur+'" aria-label="Retirer le filtre '+libelleFiltre(groupe, valeur)+'">✕</button>' +
-          '</span>'
-        );
-      });
-    });
-    zoneFiltresActifs.innerHTML = pilules.join('');
-    boutonReinit.hidden = pilules.length === 0;
-    zoneFiltresActifs.querySelectorAll('[data-retirer-groupe]').forEach(function(b){
-      b.addEventListener('click', function(){
-        etat[b.getAttribute('data-retirer-groupe')].delete(b.getAttribute('data-retirer-valeur'));
-        construireFiltres();
+    zoneFiltres.querySelectorAll('input[type="checkbox"]').forEach(function(input){
+      input.addEventListener('change', function(){
+        var groupe = etat[input.getAttribute('data-groupe')];
+        if(input.checked){ groupe.add(input.value); } else { groupe.delete(input.value); }
         rendre();
       });
     });
@@ -129,6 +75,8 @@
     var cat = paramsURL().get('categorie');
     if(cat && LABELS_CATEGORIE[cat]){
       etat.categorie.add(cat);
+      var input = zoneFiltres.querySelector('input[data-groupe="categorie"][value="'+cat+'"]');
+      if(input) input.checked = true;
     }
   }
 
@@ -142,12 +90,12 @@
     return true;
   }
 
-  function carte(p, index){
+  function carte(p){
     var puce = classerHomologation(p.homologation);
     var couleurPuce = puce === 'conforme' ? 'vert' : (puce === 'non-conforme' ? 'gris' : 'jaune');
     var img = (p.images && p.images[0]) || '';
     return (
-      '<article class="carte-produit" style="--i:'+index+'">' +
+      '<article class="carte-produit">' +
         '<a class="lien-carte" href="/produit.html?id='+encodeURIComponent(p.id)+'" aria-label="Voir la fiche '+p.nom+'">' +
           '<div class="vignette"><img src="'+img+'" alt="" loading="lazy" width="400" height="300"></div>' +
           '<div class="corps">' +
@@ -174,26 +122,23 @@
   function rendre(){
     var resultats = produits.filter(correspond);
     compteur.textContent = resultats.length + ' référence' + (resultats.length !== 1 ? 's' : '');
-    grille.innerHTML = resultats.map(carte).join('') || '<p>Aucune référence ne correspond à ces filtres. <button type="button" class="btn secondaire" id="reinit-depuis-vide">Réinitialiser les filtres</button></p>';
-    var reinitVide = document.getElementById('reinit-depuis-vide');
-    if(reinitVide){ reinitVide.addEventListener('click', reinitialiser); }
-    rendreFiltresActifs();
+    grille.innerHTML = resultats.map(carte).join('') || '<p>Aucune référence ne correspond à ces filtres.</p>';
   }
 
-  function reinitialiser(){
-    etat.categorie.clear(); etat.epaisseur.clear(); etat.homologation.clear();
-    construireFiltres();
-    rendre();
+  if(boutonReinit){
+    boutonReinit.addEventListener('click', function(){
+      etat.categorie.clear(); etat.epaisseur.clear(); etat.homologation.clear();
+      zoneFiltres.querySelectorAll('input[type="checkbox"]').forEach(function(i){ i.checked = false; });
+      rendre();
+    });
   }
-
-  if(boutonReinit){ boutonReinit.addEventListener('click', reinitialiser); }
 
   fetch('/data/products.json')
     .then(function(r){ return r.json(); })
     .then(function(data){
       produits = data;
-      appliquerParamInitial();
       construireFiltres();
+      appliquerParamInitial();
       rendre();
     });
 })();

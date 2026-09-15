@@ -6,51 +6,8 @@
     btn.addEventListener('click', function(){
       var ouvert = menu.classList.toggle('ouvert');
       btn.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
-      if(ouvert){ menu.querySelectorAll('a')[0] && menu.querySelectorAll('a')[0].focus(); }
     });
   }
-
-  // En-tête réactif au scroll (fond flouté, légèrement rétréci)
-  var entete = document.querySelector('header.site');
-  if(entete){
-    var ticking = false;
-    function actualiserEntete(){
-      entete.classList.toggle('scrolled', window.scrollY > 24);
-      ticking = false;
-    }
-    window.addEventListener('scroll', function(){
-      if(!ticking){ requestAnimationFrame(actualiserEntete); ticking = true; }
-    }, { passive:true });
-    actualiserEntete();
-  }
-
-  // Révélation au scroll pour les blocs de contenu statiques.
-  // FONTE_REVEAL.scan() peut être rappelé après une injection dynamique
-  // (catalogue, fiche produit, comparateur) pour révéler le nouveau contenu.
-  window.FONTE_REVEAL = (function(){
-    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var selecteur = '.categorie-lien, .principe, .carte-guide, .encart-guide, .bloc-avis';
-    var observateur = reduit ? null : new IntersectionObserver(function(entrees){
-      entrees.forEach(function(entree){
-        if(entree.isIntersecting){
-          entree.target.classList.add('in');
-          observateur.unobserve(entree.target);
-        }
-      });
-    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
-
-    function scan(racine){
-      (racine || document).querySelectorAll(selecteur).forEach(function(el){
-        if(el.dataset.reveal) return;
-        el.dataset.reveal = '1';
-        if(reduit){ return; }
-        el.classList.add('reveal');
-        observateur.observe(el);
-      });
-    }
-    return { scan:scan };
-  })();
-  window.FONTE_REVEAL.scan();
 
   // Année du footer
   var anneeEls = document.querySelectorAll('[data-annee]');
