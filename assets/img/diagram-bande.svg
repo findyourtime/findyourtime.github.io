@@ -1,8 +1,0 @@
-<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'une bande de genou enroulée">
-  <circle cx="200" cy="140" r="70" fill="none" stroke="#1E2023" stroke-width="3"/>
-  <path d="M200 70 A70 70 0 0 1 262 175" fill="none" stroke="#C41E3A" stroke-width="6" stroke-linecap="round"/>
-  <path d="M262 175 A70 70 0 0 1 165 202" fill="none" stroke="#C41E3A" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
-  <path d="M165 202 A70 70 0 0 1 138 105" fill="none" stroke="#C41E3A" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
-  <circle cx="200" cy="140" r="24" fill="none" stroke="#1E2023" stroke-width="2.5"/>
-  <line x1="130" y1="60" x2="150" y2="80" stroke="#1E2023" stroke-width="3" stroke-linecap="round"/>
-</svg>
