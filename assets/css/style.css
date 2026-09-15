@@ -324,10 +324,8 @@ nav.principale a:hover,nav.principale a[aria-current="page"]{
   border:var(--bord);
   background:var(--craie-haute);
   padding:18px;
+  position:sticky; top:96px;
   min-height:420px;
-}
-@media (min-width:900px){
-  .filtres{ position:sticky; top:96px; }
 }
 .filtres fieldset{ border:0; padding:0; margin-bottom:20px; }
 .filtres legend{ font-family:var(--font-chiffres); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--gris-fer); margin-bottom:10px; font-weight:700; }
