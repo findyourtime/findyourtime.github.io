@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 722 426" role="img" aria-label="FONTE">
+  <style>svg{--fonte-rouge:#EE061A;} svg:root{color:#15161A;}</style>
+  <g transform="translate(226,0)">
+    <polygon points="0,0 270,0 243,43 76,43 51,90" fill="var(--fonte-rouge)"/>
+    <polygon points="99,65 164,65 152,87 222,87 198,131 128,131 92,196 59,138" fill="var(--fonte-rouge)"/>
+  </g>
+  <g transform="translate(0,228)" fill="currentColor">
+    <path d="M0,0 H58 V198 H0 Z M0,0 H121 V40 H0 Z M0,74 H111 V113 H0 Z"/>
+    <path fill-rule="evenodd" d="M164,0 H245 A31,31 0 0 1 276,31 V167 A31,31 0 0 1 245,198 H164 A31,31 0 0 1 133,167 V31 A31,31 0 0 1 164,0 Z M197,38 H212 A6,6 0 0 1 218,44 V155 A6,6 0 0 1 212,161 H197 A6,6 0 0 1 191,155 V44 A6,6 0 0 1 197,38 Z"/>
+    <path d="M294,0 H352 V198 H294 Z M391,0 H448 V198 H391 Z"/>
+    <path d="M461,0 H592 V40 H461 Z M497,0 H555 V198 H497 Z"/>
+    <path d="M606,0 H664 V198 H606 Z M606,0 H722 V40 H606 Z M606,74 H714 V113 H606 Z M606,157 H722 V198 H606 Z"/>
+    <polygon points="313,0 351,0 428,198 390,198"/>
+  </g>
+</svg>

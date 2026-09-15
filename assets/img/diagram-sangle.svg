@@ -1,0 +1,12 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'une sangle de tirage">
+  <!-- bar -->
+  <circle cx="330" cy="130" r="22" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <!-- wrap loop around bar -->
+  <path d="M70 100 h150 a30 30 0 0 1 0 60 h-150" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <path d="M220 100 A30 30 0 0 1 220 160 L 320 150 A22 22 0 0 0 320 110 Z" fill="none" stroke="#C41E3A" stroke-width="3"/>
+  <!-- wrist loop -->
+  <ellipse cx="60" cy="130" rx="16" ry="32" fill="none" stroke="#1E2023" stroke-width="3"/>
+  <!-- stitch texture -->
+  <line x1="90" y1="115" x2="200" y2="115" stroke="#1E2023" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.6"/>
+  <line x1="90" y1="145" x2="200" y2="145" stroke="#1E2023" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.6"/>
+</svg>
