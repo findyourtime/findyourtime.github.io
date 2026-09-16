@@ -26,7 +26,6 @@ produit.html?id=...          Gabarit de fiche produit (JS, un seul fichier pour 
 comparateur.html            Comparateur 2-3 produits
 guides.html                  Index des guides
 guides/<slug>/index.html     Les 4 guides de fond, en URL propres (/guides/<slug>/)
-guides/<ancien>.html         Redirections vers les URL en dossier (voir « Hébergement »)
 livraison-retours.html, mentions-legales.html, cgv.html, confidentialite.html
 merci.html                   Page de confirmation après un formulaire Netlify
 404.html
@@ -142,11 +141,11 @@ différence à connaître :
   commande de build, publish `.`) et se reconstruit donc à chaque push,
   comme GitHub Pages. Il n'y a plus de dépôt manuel de fichiers à faire.
 
-Les anciennes URL de guides en `.html` existent en double : une
-redirection 301 `force = true` dans `netlify.toml` (Netlify) et un fichier
-de repli en `meta refresh` au même chemin (tous les autres hôtes, dont
-GitHub Pages). Le `force` est nécessaire, sinon Netlify servirait le
-fichier au lieu de renvoyer la 301.
+Les anciennes URL de guides en `.html` sont traitées uniquement par les
+redirections 301 de `netlify.toml`. Ne jamais créer de fichier
+`guides/<slug>.html` à côté d'un `guides/<slug>/index.html` : les deux se
+disputent l'URL sans extension, Netlify sert le fichier, et le guide
+devient inatteignable. C'est arrivé une fois.
 
 ## Formulaires Netlify
 

@@ -2,32 +2,28 @@
   publish = "."
 
 # Anciennes URL des guides (.html) vers les URL propres en dossier.
-# force = true : des fichiers de repli existent à ces chemins (meta refresh,
-# pour les hébergeurs qui ne lisent pas ce fichier) et, sans force, Netlify
-# les servirait au lieu de renvoyer une vraie 301.
+# Ne jamais remettre de fichier à ces chemins : un guides/<slug>.html à côté
+# d'un guides/<slug>/index.html se dispute l'URL sans extension, et Netlify
+# sert le fichier plutôt que le dossier.
 [[redirects]]
   from = "/guides/ceinture-10-13mm.html"
   to = "/guides/ceinture-10-ou-13-mm/"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/guides/levier-boucle.html"
   to = "/guides/levier-boucle/"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/guides/genouilleres.html"
   to = "/guides/genouilleres/"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/guides/homologation-ipf.html"
   to = "/guides/homologation-ipf/"
   status = 301
-  force = true
 
 [[headers]]
   for = "/assets/*"
