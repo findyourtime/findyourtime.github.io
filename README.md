@@ -138,10 +138,9 @@ différence à connaître :
   fonctionnent pas** (la soumission n'est capturée nulle part).
 - **Netlify** — `https://fonte-athletique.netlify.app`. C'est l'hôte de
   référence : `netlify.toml` y est appliqué et les formulaires y sont
-  capturés. Le site Netlify doit être relié au dépôt GitHub (Site
-  configuration → Build & deploy → Link repository) pour se reconstruire
-  à chaque push ; tant qu'il ne l'est pas, il reste figé sur le dernier
-  dépôt manuel.
+  capturés. Le site est relié au dépôt GitHub (branche `main`, aucune
+  commande de build, publish `.`) et se reconstruit donc à chaque push,
+  comme GitHub Pages. Il n'y a plus de dépôt manuel de fichiers à faire.
 
 Les anciennes URL de guides en `.html` existent en double : une
 redirection 301 `force = true` dans `netlify.toml` (Netlify) et un fichier
