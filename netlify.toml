@@ -25,6 +25,15 @@
   to = "/guides/homologation-ipf/"
   status = 301
 
+# Outillage de développement (.claude/skills). Le site publie la racine
+# entière, donc on refuse explicitement de servir ce dossier plutôt que de
+# dépendre du traitement des fichiers cachés par l'hébergeur.
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
