@@ -4,7 +4,7 @@
     'strap':'Sangles de tirage','grip':'Crochets de tirage','wrist-wrap':'Wrist wraps'
   };
   var TITRES_GUIDE = {
-    'ceinture-10-13mm':'Ceinture 10 ou 13 mm : ce que change réellement l’épaisseur',
+    'ceinture-10-ou-13-mm':'Ceinture de force 10 ou 13 mm : ce que change vraiment l’épaisseur',
     'levier-boucle':'Levier ou boucle : mécanique, réglage, contraintes en compétition',
     'genouilleres':'Genouillères : souples ou raides selon la discipline',
     'homologation-ipf':'L’homologation IPF : ce que ça implique, quand ça compte, quand ça ne compte pas'
@@ -75,11 +75,18 @@
         el('produit-limites-bloc').hidden = false;
       }
 
-      if(p.guide_choix_lié && TITRES_GUIDE[p.guide_choix_lié]){
-        el('produit-lien-guide').href = '/guides/' + p.guide_choix_lié + '.html';
-        el('produit-lien-guide-titre').textContent = TITRES_GUIDE[p.guide_choix_lié];
-        el('produit-lien-guide').hidden = false;
-      }
+      // guide_choix_lié accepte un slug ou une liste de slugs : une ceinture
+      // renvoie à la fois vers le guide d'épaisseur et vers son guide spécifique.
+      var guides = p.guide_choix_lié;
+      if(typeof guides === 'string'){ guides = [guides]; }
+      el('produit-guides').innerHTML = (guides || [])
+        .filter(function(slug){ return TITRES_GUIDE[slug]; })
+        .map(function(slug){
+          return '<a class="lien-guide" href="/guides/' + slug + '/">' +
+                   '<span class="n">GUIDE&nbsp;DE&nbsp;CHOIX</span>' +
+                   '<strong>' + TITRES_GUIDE[slug] + '</strong>' +
+                 '</a>';
+        }).join('');
 
       el('champ-produit-id').value = p.id;
       el('champ-produit-nom').value = p.nom;

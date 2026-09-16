@@ -25,7 +25,7 @@ catalogue.html              Catalogue filtrable (JS)
 produit.html?id=...          Gabarit de fiche produit (JS, un seul fichier pour les 15 références)
 comparateur.html            Comparateur 2-3 produits
 guides.html                  Index des guides
-guides/*.html                Les 4 guides de fond
+guides/<slug>/index.html     Les 4 guides de fond, en URL propres (/guides/<slug>/)
 livraison-retours.html, mentions-legales.html, cgv.html, confidentialite.html
 merci.html                   Page de confirmation après un formulaire Netlify
 404.html
@@ -46,7 +46,8 @@ assets/img/*.svg             Illustrations techniques (schémas, pas de photos p
    `wrist-wrap`), `gamme`, `prix`, `specs` (objet libre — chaque clé devient
    une ligne du tableau de specs), `homologation` (texte court affiché en
    badge), `description_courte`, `description_longue`, `guide_choix_lié`
-   (slug d'un fichier dans `guides/`, ou `null`), `images` (tableau de
+   (liste de slugs de `guides/` — un slug seul ou `null` restent acceptés ;
+   toutes les ceintures pointent vers `ceinture-10-ou-13-mm`), `images` (tableau de
    chemins, un seul élément suffit), `stock_statut`
    (`disponible` / `rupture_temporaire` / `a_venir`).
 3. Rien d'autre à modifier : catalogue, fiche produit et comparateur lisent

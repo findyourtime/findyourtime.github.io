@@ -1,6 +1,27 @@
 [build]
   publish = "."
 
+# Anciennes URL des guides (.html) vers les URL propres en dossier.
+[[redirects]]
+  from = "/guides/ceinture-10-13mm.html"
+  to = "/guides/ceinture-10-ou-13-mm/"
+  status = 301
+
+[[redirects]]
+  from = "/guides/levier-boucle.html"
+  to = "/guides/levier-boucle/"
+  status = 301
+
+[[redirects]]
+  from = "/guides/genouilleres.html"
+  to = "/guides/genouilleres/"
+  status = 301
+
+[[redirects]]
+  from = "/guides/homologation-ipf.html"
+  to = "/guides/homologation-ipf/"
+  status = 301
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
