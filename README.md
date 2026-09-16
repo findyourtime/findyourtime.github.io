@@ -26,6 +26,7 @@ produit.html?id=...          Gabarit de fiche produit (JS, un seul fichier pour 
 comparateur.html            Comparateur 2-3 produits
 guides.html                  Index des guides
 guides/<slug>/index.html     Les 4 guides de fond, en URL propres (/guides/<slug>/)
+guides/<ancien>.html         Redirections vers les URL en dossier (voir « Hébergement »)
 livraison-retours.html, mentions-legales.html, cgv.html, confidentialite.html
 merci.html                   Page de confirmation après un formulaire Netlify
 404.html
@@ -124,6 +125,29 @@ après l'activation des paiements, pour les produits en rupture ou à venir.
   référencés par aucune page de ce site et peuvent être supprimés
   manuellement (l'agent qui a construit ce site n'a pas eu l'autorisation
   de les supprimer automatiquement).
+
+## Hébergement
+
+Le site est déployé sur deux hôtes et fonctionne sur les deux, avec une
+différence à connaître :
+
+- **GitHub Pages** — `https://findyourtime.github.io`, reconstruit
+  automatiquement à chaque push sur `main`. GitHub Pages ne lit pas
+  `netlify.toml` : ni les redirections ni les en-têtes de cache et de
+  sécurité ne s'y appliquent, et **les formulaires Netlify n'y
+  fonctionnent pas** (la soumission n'est capturée nulle part).
+- **Netlify** — `https://fonte-athletique.netlify.app`. C'est l'hôte de
+  référence : `netlify.toml` y est appliqué et les formulaires y sont
+  capturés. Le site Netlify doit être relié au dépôt GitHub (Site
+  configuration → Build & deploy → Link repository) pour se reconstruire
+  à chaque push ; tant qu'il ne l'est pas, il reste figé sur le dernier
+  dépôt manuel.
+
+Les anciennes URL de guides en `.html` existent en double : une
+redirection 301 `force = true` dans `netlify.toml` (Netlify) et un fichier
+de repli en `meta refresh` au même chemin (tous les autres hôtes, dont
+GitHub Pages). Le `force` est nécessaire, sinon Netlify servirait le
+fichier au lieu de renvoyer la 301.
 
 ## Formulaires Netlify
 
