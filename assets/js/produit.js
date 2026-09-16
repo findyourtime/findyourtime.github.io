@@ -5,9 +5,9 @@
   };
   var TITRES_GUIDE = {
     'ceinture-10-ou-13-mm':'Ceinture de force 10 ou 13 mm : ce que change vraiment l’épaisseur',
-    'levier-boucle':'Levier ou boucle : mécanique, réglage, contraintes en compétition',
-    'genouilleres':'Genouillères : souples ou raides selon la discipline',
-    'homologation-ipf':'L’homologation IPF : ce que ça implique, quand ça compte, quand ça ne compte pas'
+    'levier-boucle':'Ceinture à levier ou à boucle : lequel choisir',
+    'genouilleres':'Genouillères 5 ou 7 mm : choisir selon votre discipline',
+    'homologation-ipf':'L’homologation IPF : ce que ça veut dire, et quand ça compte'
   };
 
   function classerHomologation(texte){

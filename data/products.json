@@ -24,7 +24,8 @@
     "description_courte": "La ceinture d'entrée en force athlétique : cuir pleine fleur, 10 mm, boucle simple. Assez rigide pour caler l'abdomen, assez souple pour ne pas gêner l'apprentissage du gainage.",
     "description_longue": "La Socle 10 est pensée pour qui découvre le travail à la ceinture ou qui s'entraîne à des charges où une ceinture de 13 mm serait davantage une contrainte qu'une aide. Le cuir pleine fleur à 10 mm offre un appui ferme sans demander plusieurs semaines d'assouplissement avant de devenir confortable. La boucle simple à ardillon reste le système le plus prévisible : le réglage est fixe une fois la taille choisie, sans jeu mécanique à surveiller. C'est un choix pertinent pour le squat et le soulevé de terre en dessous de charges compétitives, et pour toute personne qui veut apprendre à respirer et à créer de la pression intra-abdominale avant de passer à du matériel plus rigide. Ce que cette ceinture ne fait pas : elle n'offre pas le même retour de force qu'une 13 mm sur des charges proches du maximum, et son serrage est légèrement plus long à ajuster qu'un levier. Voir le guide 10 vs 13 mm pour la comparaison complète.",
     "guide_choix_lié": [
-      "ceinture-10-ou-13-mm"
+      "ceinture-10-ou-13-mm",
+      "levier-boucle"
     ],
     "images": [
       "assets/img/diagram-ceinture.svg"
@@ -56,7 +57,8 @@
     "description_courte": "La référence compétition en boucle simple : 13 mm de cuir pleine fleur, appui maximal, mécanique la plus simple à faire homologuer et à faire vérifier au pesée.",
     "description_longue": "La Plateau 13 Boucle est le format le plus répandu sur les plateaux de compétition, pour une raison simple : la boucle simple n'a rien à faire vérifier au contrôle du matériel au-delà du cuir et de la largeur. Les 13 mm d'épaisseur donnent l'appui le plus ferme du catalogue pour la pression abdominale sur les charges lourdes en squat et en soulevé de terre. La contrepartie est un temps d'adaptation : une ceinture de 13 mm neuve est raide, et il faut généralement plusieurs séances pour qu'elle se galbe à la morphologie du bassin et devienne confortable en position basse de squat. Cette ceinture ne convient pas à qui débute le travail ceinturé (la Socle 10 est un meilleur point d'entrée) ni à qui a besoin de réglages fins et fréquents en séance, un usage où le levier est plus rapide. Le guide 10 vs 13 mm détaille l'écart de rigidité, et le guide levier ou boucle détaille l'écart de mécanisme.",
     "guide_choix_lié": [
-      "ceinture-10-ou-13-mm"
+      "ceinture-10-ou-13-mm",
+      "levier-boucle"
     ],
     "images": [
       "assets/img/diagram-ceinture.svg"
