@@ -99,6 +99,33 @@ commandable, ce qui est faux tant que les ventes ne sont pas ouvertes. Le
 prix figure comme simple propriété indicative. À revoir le jour où
 `PAYMENTS_ENABLED` passe à `true`.
 
+## L'élément 3D du hero
+
+`assets/js/disque-3d.js`, chargé uniquement par `index.html`. Un disque
+de force en WebGL, rendu sans bibliothèque : le profil du disque est
+décrit en coupe puis révolutionné autour de son axe, chaque segment du
+profil portant sa couleur. 4,2 Ko gzip.
+
+Pourquoi pas Three.js : `three.module.js` plus `three.core.js` pèsent
+environ 400 Ko gzip, et il faudrait les héberger ici plutôt que sur un
+CDN puisque `cookies.html` affirme qu'aucune requête ne sort du domaine.
+Disproportionné pour un objet décoratif sur une page à TBT 0 ms.
+
+Pourquoi pas du CSS 3D : un disque est symétrique autour de son axe, et
+un empilement de cercles CSS se réduit à des traits dès qu'on le regarde
+de trois quarts. Le trou central traversant et la tranche demandent une
+vraie géométrie.
+
+Trois conditions d'arrêt, dans cet ordre : pas de WebGL ou pas de
+JavaScript, et le SVG de repli reste affiché (le script ajoute
+`.webgl-actif` pour le masquer, donc l'absence de script laisse le repli
+en place) ; `prefers-reduced-motion`, et le disque est rendu une fois de
+trois quarts sans boucle ; hors de l'écran ou onglet masqué, et la
+boucle est suspendue.
+
+Les seules couleurs sont `--rouge`, `--encre` et `--gris-fer`. Le relief
+vient de l'éclairage du shader, pas de teintes supplémentaires.
+
 ## Conformité et accessibilité
 
 Pages légales : `mentions-legales.html` (LCEN), `cgu.html` (usage du

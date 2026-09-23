@@ -829,15 +829,12 @@ footer.site{
   .carte-guide:hover{ transform:none; }
 }
 
-/* ---------- Disque de fonte en volume ----------
-   Un disque olympique construit par empilement : vingt-trois cercles
-   pleins décalés en profondeur, dont la couleur s'éclaircit vers l'avant,
-   plus une face sombre de chaque côté et un moyeu métallique. Aucune
-   bibliothèque 3D, aucun canvas — uniquement des transformations que le
-   compositeur prend en charge. Purement décoratif : aria-hidden côté HTML. */
+/* ---------- Disque de force : l'unique élément 3D du site ----------
+   Rendu en WebGL par assets/js/disque-3d.js, uniquement sur l'accueil.
+   Le SVG de repli est affiché par défaut : s'il n'y a ni JavaScript ni
+   WebGL, le visiteur voit un disque fixe plutôt qu'un trou dans la page.
+   Le script pose .webgl-actif quand il a réellement démarré. */
 .scene-3d{
-  perspective:900px;
-  perspective-origin:50% 42%;
   display:grid;
   gap:34px;
   justify-items:center;
@@ -846,48 +843,27 @@ footer.site{
    barres (1fr entre deux colonnes fixes) se réduit à rien. */
 .scene-3d > .plateau-barres{ width:100%; justify-self:stretch; }
 
-.disque{
+.disque-3d{
   position:relative;
-  width:clamp(138px, 28vw, 208px);
+  width:clamp(146px, 30vw, 224px);
   aspect-ratio:1;
-  transform-style:preserve-3d;
-  animation:disque-tourne 26s linear infinite;
-  filter:drop-shadow(0 24px 30px rgba(0,0,0,0.5));
 }
-@keyframes disque-tourne{
-  from{ transform:rotateX(-14deg) rotateY(0deg); }
-  to  { transform:rotateX(-14deg) rotateY(360deg); }
-}
-.disque .couche{
+.disque-3d canvas,
+.disque-3d .disque-repli{
   position:absolute; inset:0;
-  border-radius:50%;
-  background:var(--c);
-  transform:translateZ(calc((var(--i) - 11) * 1.6px));
+  width:100%; height:100%;
+  display:block;
 }
-.disque .face{
-  position:absolute;
-  left:13%; top:13%; width:74%; height:74%;
-  border-radius:50%;
-  background:radial-gradient(circle at 38% 32%, #33363B, #17181C 70%);
-  box-shadow:inset 0 0 0 2px rgba(255,255,255,0.06);
+.disque-3d canvas{
+  /* L'ombre portée suit la silhouette réelle du rendu, trou compris. */
+  filter:drop-shadow(0 22px 26px rgba(0,0,0,0.5));
 }
-.disque .face.avant  { transform:translateZ(18.5px); }
-.disque .face.arriere{ transform:translateZ(-18.5px); }
-.disque .moyeu{
-  position:absolute;
-  left:50%; top:50%;
-  width:19%; aspect-ratio:1;
-  margin:-9.5% 0 0 -9.5%;
-  border-radius:50%;
-  background:linear-gradient(150deg, #A4A8AE, #3A3D42 60%, #7A7E85);
-  transform:translateZ(19px);
-  box-shadow:inset 0 0 0 3px rgba(0,0,0,0.4);
+.disque-3d.webgl-actif .disque-repli{ display:none; }
+.disque-3d .disque-repli{
+  filter:drop-shadow(0 22px 26px rgba(0,0,0,0.5));
+  transform:rotateX(-17deg) rotateY(-35deg) scale(0.9);
 }
-/* Mouvement réduit : le disque s'arrête de trois quarts plutôt que de
-   disparaître — on retire l'animation, pas l'objet. */
-@media (prefers-reduced-motion: reduce){
-  .disque{ animation:none; transform:rotateX(-14deg) rotateY(-32deg); }
-}
+
 @media (max-width:899px){
   .scene-3d{ gap:24px; }
 }

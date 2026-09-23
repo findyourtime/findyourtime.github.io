@@ -88,33 +88,23 @@
         </div>
       </div>
       <div class="scene-3d" aria-hidden="true">
-        <div class="disque">
-        <span class="couche" style="--i:0; --c:#5e0f1d"></span>
-        <span class="couche" style="--i:1; --c:#64111f"></span>
-        <span class="couche" style="--i:2; --c:#691221"></span>
-        <span class="couche" style="--i:3; --c:#6f1423"></span>
-        <span class="couche" style="--i:4; --c:#741525"></span>
-        <span class="couche" style="--i:5; --c:#7a1727"></span>
-        <span class="couche" style="--i:6; --c:#7f192a"></span>
-        <span class="couche" style="--i:7; --c:#851a2c"></span>
-        <span class="couche" style="--i:8; --c:#8a1c2e"></span>
-        <span class="couche" style="--i:9; --c:#901d30"></span>
-        <span class="couche" style="--i:10; --c:#951f32"></span>
-        <span class="couche" style="--i:11; --c:#9b2034"></span>
-        <span class="couche" style="--i:12; --c:#a12236"></span>
-        <span class="couche" style="--i:13; --c:#a62438"></span>
-        <span class="couche" style="--i:14; --c:#ac253a"></span>
-        <span class="couche" style="--i:15; --c:#b1273c"></span>
-        <span class="couche" style="--i:16; --c:#b7283e"></span>
-        <span class="couche" style="--i:17; --c:#bc2a41"></span>
-        <span class="couche" style="--i:18; --c:#c22c43"></span>
-        <span class="couche" style="--i:19; --c:#c72d45"></span>
-        <span class="couche" style="--i:20; --c:#cd2f47"></span>
-        <span class="couche" style="--i:21; --c:#d23049"></span>
-        <span class="couche" style="--i:22; --c:#d8324b"></span>
-          <span class="face avant"></span>
-          <span class="face arriere"></span>
-          <span class="moyeu"></span>
+        <div class="disque-3d">
+          <canvas id="disque-canvas"></canvas>
+          <!-- Repli affiché tant que le WebGL n'a pas pris la main : pas de
+               JavaScript, pas de WebGL, ou une erreur de rendu. Le script
+               pose .webgl-actif sur le conteneur pour le masquer. -->
+          <svg class="disque-repli" viewBox="0 0 200 200" role="img" aria-hidden="true">
+            <defs>
+              <radialGradient id="rg-face" cx="38%" cy="32%">
+                <stop offset="0" stop-color="#2B2E32"/>
+                <stop offset="1" stop-color="#15161A"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="96" fill="#C41E3A"/>
+            <circle cx="100" cy="100" r="60" fill="url(#rg-face)"/>
+            <circle cx="100" cy="100" r="19" fill="#565960"/>
+            <circle cx="100" cy="100" r="11" fill="#15161A"/>
+          </svg>
         </div>
         <div class="plateau-barres" aria-hidden="true">
         <div class="barre-ligne">
@@ -269,5 +259,6 @@
 
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/disque-3d.js" defer></script>
 </body>
 </html>
