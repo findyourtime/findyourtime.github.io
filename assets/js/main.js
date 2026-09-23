@@ -14,8 +14,15 @@
   var entete = document.querySelector('header.site');
   if(entete){
     var ticking = false;
+    var reduitMouvement = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function actualiserEntete(){
-      entete.classList.toggle('scrolled', window.scrollY > 24);
+      var y = window.scrollY;
+      entete.classList.toggle('scrolled', y > 24);
+      // La grille de points du hero se décale un peu moins vite que la page.
+      // Une variable CSS suffit : aucune écriture de style de mise en page.
+      if(!reduitMouvement){
+        document.documentElement.style.setProperty('--defilement', Math.min(y, 600));
+      }
       ticking = false;
     }
     window.addEventListener('scroll', function(){
@@ -88,6 +95,41 @@
       });
     }
   }
+
+  // Inclinaison 3D des cartes au pointeur. Le JS ne fait que publier la
+  // position relative du curseur dans deux variables CSS (-1 a 1) ; toute
+  // la transformation est decrite en CSS, donc desactivable par media query.
+  // Ne s'active ni au toucher, ni sous prefers-reduced-motion.
+  var souris = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var anime = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.FONTE_TILT = function(racine){
+    if(!souris || !anime) return;
+    (racine || document).querySelectorAll('.carte-produit').forEach(function(carte){
+      if(carte.classList.contains('incline')) return;
+      carte.classList.add('incline');
+      var enAttente = false;
+      carte.addEventListener('pointermove', function(ev){
+        if(enAttente) return;
+        enAttente = true;
+        requestAnimationFrame(function(){
+          var r = carte.getBoundingClientRect();
+          carte.style.setProperty('--tx', ((ev.clientX - r.left) / r.width - 0.5) * 2);
+          carte.style.setProperty('--ty', ((ev.clientY - r.top) / r.height - 0.5) * 2);
+          enAttente = false;
+        });
+      });
+      carte.addEventListener('pointerleave', function(){
+        carte.style.setProperty('--tx', 0);
+        carte.style.setProperty('--ty', 0);
+      });
+    });
+  };
+  window.FONTE_TILT();
+
+  // Epaisseur echelonnee des lignes du panneau de statistiques du hero.
+  document.querySelectorAll('.plateau-barres .barre-ligne').forEach(function(l, i){
+    l.style.setProperty('--z', i + 1);
+  });
 
   // Formulaires Netlify "mise en relation" : envoi en AJAX vers Netlify Forms,
   // confirmation inline sans rechargement. Fonctionne aussi sans JS (soumission

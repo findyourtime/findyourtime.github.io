@@ -470,7 +470,12 @@ nav.principale a:hover::after,nav.principale a[aria-current="page"]::after{
   padding:20px;
   overflow:hidden;
 }
-.carte-produit .vignette img{ transition:transform 0.4s var(--ressort); }
+.carte-produit .vignette img{
+  /* Les schémas font 400x300 en intrinsèque, la vignette est plus étroite :
+     sans contrainte ils débordaient et se faisaient rogner par le overflow. */
+  width:100%; height:100%; object-fit:contain; display:block;
+  transition:transform 0.4s var(--ressort);
+}
 .carte-produit:hover .vignette img{ transform:scale(1.08) rotate(-1deg); }
 .carte-produit .corps{ padding:16px 16px 20px; display:flex; flex-direction:column; gap:10px; flex:1; }
 .carte-produit .gamme{ font-family:var(--font-chiffres); font-size:0.72rem; text-transform:uppercase; color:var(--gris-fer); letter-spacing:0.04em; }
@@ -645,3 +650,244 @@ footer.site{
 /* -- utilitaires -- */
 .mt-0{ margin-top:0; }
 .centre{ text-align:center; }
+
+/* =========================================================
+   PROFONDEUR — 3D, translucidité, mouvement
+   -----------------------------------------------------------------
+   Trois règles tenues partout dans ce bloc :
+
+   1. Les surfaces translucides gardent une opacité calculée pour que le
+      texte reste au-dessus de 4,5:1 dans le pire cas, c'est-à-dire
+      par-dessus le fond le plus clair du site. L'en-tête sombre à 0,78
+      donne 7,8:1 sur --craie. Le flou n'est jamais ce qui rend le texte
+      lisible : il est décoratif, l'opacité fait le travail.
+   2. Tout le mouvement passe par transform et opacity, jamais par des
+      propriétés qui déclenchent un recalcul de mise en page.
+   3. L'inclinaison au pointeur ne s'active qu'avec une souris
+      (hover:hover et pointer:fine) et jamais sous prefers-reduced-motion.
+   ========================================================= */
+
+:root{
+  --verre-sombre:  rgba(30,32,35,0.78);
+  --verre-surface: rgba(255,255,255,0.055);
+  --verre-clair:   rgba(246,244,239,0.72);
+  --verre-bord:    1px solid rgba(255,255,255,0.12);
+  --verre-flou:    blur(16px) saturate(1.5);
+  --profondeur:    1100px;
+  --ombre-portee:  0 32px 64px -24px rgba(0,0,0,0.55), 0 12px 24px -12px rgba(0,0,0,0.35);
+}
+
+/* ---------- En-tête : verre sombre ---------- */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  header.site.scrolled{
+    background:var(--verre-sombre);
+    -webkit-backdrop-filter:var(--verre-flou);
+    backdrop-filter:var(--verre-flou);
+  }
+}
+
+/* ---------- Hero : parallaxe et relief ---------- */
+.hero::before{
+  transform:translate3d(0, calc(var(--defilement, 0) * 0.12px), 0);
+  will-change:transform;
+}
+@media (prefers-reduced-motion: reduce){
+  .hero::before{ transform:none; }
+}
+
+/* Halo lent derrière le panneau, en pur transform/opacity. */
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-12%; top:-30%;
+  width:min(680px, 90vw); aspect-ratio:1;
+  background:radial-gradient(circle, rgba(196,30,58,0.20), transparent 62%);
+  filter:blur(28px);
+  pointer-events:none;
+  z-index:1;
+  animation:halo-respire 14s ease-in-out infinite;
+}
+@keyframes halo-respire{
+  0%,100%{ transform:scale(1) translate3d(0,0,0); opacity:0.75; }
+  50%    { transform:scale(1.12) translate3d(0,18px,0); opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){
+  .hero::after{ animation:none; }
+}
+
+/* ---------- Panneau de statistiques : volume réel ---------- */
+.hero-grille{ perspective:var(--profondeur); }
+
+.plateau-barres{
+  transform-style:preserve-3d;
+  transform:rotateY(-9deg) rotateX(4deg);
+  transition:transform 0.5s var(--ressort), box-shadow 0.5s var(--ressort);
+  box-shadow:var(--ombre-portee);
+  position:relative;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .plateau-barres{
+    /* Plus clair que --acier-2 une fois composité sur le hero : la
+       lisibilité des étiquettes est vérifiée par axe-core, pas estimée. */
+    background:linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    -webkit-backdrop-filter:blur(14px) saturate(1.3);
+    backdrop-filter:blur(14px) saturate(1.3);
+    border:var(--verre-bord);
+  }
+}
+/* Chaque ligne prend un peu d'épaisseur : le panneau a un dessus et un
+   dessous, pas seulement une ombre portée. */
+.plateau-barres .barre-ligne{
+  transform:translateZ(calc(var(--z, 0) * 6px));
+}
+.hero-grille:hover .plateau-barres{
+  transform:rotateY(-4deg) rotateX(2deg) translateZ(14px);
+}
+@media (prefers-reduced-motion: reduce), (hover: none){
+  .plateau-barres,
+  .hero-grille:hover .plateau-barres{ transform:none; transition:none; }
+  .plateau-barres .barre-ligne{ transform:none; }
+}
+
+/* ---------- Cartes produit : inclinaison suivant le pointeur ---------- */
+.grille-produits{ perspective:var(--profondeur); }
+.carte-produit{ transform-style:preserve-3d; }
+
+@media (hover: hover) and (pointer: fine){
+  .carte-produit.incline{
+    transition:transform 0.18s ease-out, box-shadow 0.28s var(--ressort), border-color 0.28s ease;
+  }
+  .carte-produit.incline:hover{
+    transform:
+      translateY(-6px)
+      rotateX(calc(var(--ty, 0) * -4.5deg))
+      rotateY(calc(var(--tx, 0) * 5.5deg));
+  }
+  .carte-produit.incline:hover .vignette img{ transform:scale(1.06) translateZ(30px); }
+  .carte-produit.incline:hover .corps{ transform:translateZ(18px); }
+  .carte-produit .corps{ transition:transform 0.28s var(--ressort); }
+
+  /* Reflet qui suit le pointeur. Purement décoratif, sous le texte. */
+  .carte-produit.incline::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(
+      380px circle at calc(50% + var(--tx, 0) * 40%) calc(50% + var(--ty, 0) * 40%),
+      rgba(255,255,255,0.45), transparent 60%);
+    opacity:0; transition:opacity 0.28s ease;
+    pointer-events:none; mix-blend-mode:overlay;
+  }
+  .carte-produit.incline:hover::after{ opacity:1; }
+}
+.carte-produit{ position:relative; }
+
+@media (prefers-reduced-motion: reduce){
+  .carte-produit.incline:hover{ transform:translateY(-6px); }
+  .carte-produit.incline:hover .vignette img,
+  .carte-produit.incline:hover .corps{ transform:none; }
+  .carte-produit.incline::after{ display:none; }
+}
+
+/* ---------- Panneau de filtres : verre clair ---------- */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  @media (min-width:900px){
+    .filtres{
+      background:var(--verre-clair);
+      -webkit-backdrop-filter:blur(12px) saturate(1.2);
+      backdrop-filter:blur(12px) saturate(1.2);
+    }
+  }
+}
+
+/* ---------- Fiche produit : le visuel prend du volume ---------- */
+.fiche-visuel{
+  perspective:var(--profondeur);
+}
+.fiche-visuel img{
+  transition:transform 0.6s var(--ressort), box-shadow 0.6s var(--ressort);
+  transform-style:preserve-3d;
+}
+@media (hover: hover) and (pointer: fine){
+  .fiche-visuel:hover img{ transform:rotateY(-6deg) rotateX(3deg) scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce){
+  .fiche-visuel:hover img{ transform:none; }
+}
+
+/* ---------- Boutons : appui physique ---------- */
+.btn{ transform-style:preserve-3d; }
+.btn.primaire{
+  background-image:linear-gradient(175deg, rgba(255,255,255,0.16), transparent 58%);
+}
+
+/* ---------- Cartes de guide : élévation au survol ---------- */
+.carte-guide{ transition:transform 0.3s var(--ressort), box-shadow 0.3s var(--ressort); }
+@media (hover: hover) and (pointer: fine){
+  .carte-guide:hover{ transform:translateY(-5px) scale(1.012); box-shadow:var(--ombre-lg); }
+}
+@media (prefers-reduced-motion: reduce){
+  .carte-guide:hover{ transform:none; }
+}
+
+/* ---------- Disque de fonte en volume ----------
+   Un disque olympique construit par empilement : vingt-trois cercles
+   pleins décalés en profondeur, dont la couleur s'éclaircit vers l'avant,
+   plus une face sombre de chaque côté et un moyeu métallique. Aucune
+   bibliothèque 3D, aucun canvas — uniquement des transformations que le
+   compositeur prend en charge. Purement décoratif : aria-hidden côté HTML. */
+.scene-3d{
+  perspective:900px;
+  perspective-origin:50% 42%;
+  display:grid;
+  gap:34px;
+  justify-items:center;
+}
+/* Le panneau garde toute la largeur de la colonne, sinon la piste des
+   barres (1fr entre deux colonnes fixes) se réduit à rien. */
+.scene-3d > .plateau-barres{ width:100%; justify-self:stretch; }
+
+.disque{
+  position:relative;
+  width:clamp(138px, 28vw, 208px);
+  aspect-ratio:1;
+  transform-style:preserve-3d;
+  animation:disque-tourne 26s linear infinite;
+  filter:drop-shadow(0 24px 30px rgba(0,0,0,0.5));
+}
+@keyframes disque-tourne{
+  from{ transform:rotateX(-14deg) rotateY(0deg); }
+  to  { transform:rotateX(-14deg) rotateY(360deg); }
+}
+.disque .couche{
+  position:absolute; inset:0;
+  border-radius:50%;
+  background:var(--c);
+  transform:translateZ(calc((var(--i) - 11) * 1.6px));
+}
+.disque .face{
+  position:absolute;
+  left:13%; top:13%; width:74%; height:74%;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, #33363B, #17181C 70%);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+.disque .face.avant  { transform:translateZ(18.5px); }
+.disque .face.arriere{ transform:translateZ(-18.5px); }
+.disque .moyeu{
+  position:absolute;
+  left:50%; top:50%;
+  width:19%; aspect-ratio:1;
+  margin:-9.5% 0 0 -9.5%;
+  border-radius:50%;
+  background:linear-gradient(150deg, #A4A8AE, #3A3D42 60%, #7A7E85);
+  transform:translateZ(19px);
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,0.4);
+}
+/* Mouvement réduit : le disque s'arrête de trois quarts plutôt que de
+   disparaître — on retire l'animation, pas l'objet. */
+@media (prefers-reduced-motion: reduce){
+  .disque{ animation:none; transform:rotateX(-14deg) rotateY(-32deg); }
+}
+@media (max-width:899px){
+  .scene-3d{ gap:24px; }
+}

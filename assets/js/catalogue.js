@@ -187,6 +187,8 @@
     var reinitVide = document.getElementById('reinit-depuis-vide');
     if(reinitVide){ reinitVide.addEventListener('click', reinitialiser); }
     rendreFiltresActifs();
+    // Les cartes viennent d'être injectées : (ré)armer l'inclinaison 3D.
+    if(window.FONTE_TILT){ window.FONTE_TILT(grille); }
   }
 
   function reinitialiser(){
