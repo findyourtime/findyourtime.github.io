@@ -601,7 +601,7 @@ article.guide blockquote{
 main.gabarit{ max-width:42em; margin-inline:auto; padding-block:48px; }
 main.gabarit h2{ margin-top:2em; margin-bottom:0.5em; }
 main.gabarit p{ max-width:none; margin-bottom:1em; }
-.a-completer{ background:rgba(180,138,0,0.16); color:#7a5c00; padding:2px 6px; border-radius:2px; font-weight:700; font-size:0.92em; }
+.a-completer{ background:rgba(180,138,0,0.16); color:#4d3a00; padding:2px 6px; border-radius:2px; font-weight:700; font-size:0.92em; }
 
 .bandeau-cookies{
   position:fixed; left:0; right:0; bottom:0; z-index:300;

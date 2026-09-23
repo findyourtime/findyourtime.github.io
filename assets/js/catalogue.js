@@ -142,17 +142,26 @@
     return true;
   }
 
+  // Les valeurs viennent de products.json, donc maîtrisées, mais elles sont
+  // injectées dans des attributs HTML : on les échappe pour qu'une apostrophe
+  // ou un chevron dans un nom de produit ne casse pas le balisage.
+  function ech(t){
+    return String(t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
   function carte(p, index){
     var puce = classerHomologation(p.homologation);
     var couleurPuce = puce === 'conforme' ? 'vert' : (puce === 'non-conforme' ? 'gris' : 'jaune');
     var img = (p.images && p.images[0]) || '';
     return (
       '<article class="carte-produit" style="--i:'+index+'">' +
-        '<a class="lien-carte" href="/produit.html?id='+encodeURIComponent(p.id)+'" aria-label="Voir la fiche '+p.nom+'">' +
-          '<div class="vignette"><img src="'+img+'" alt="" loading="lazy" width="400" height="300"></div>' +
+        '<a class="lien-carte" href="/produit.html?id='+encodeURIComponent(p.id)+'" aria-label="Voir la fiche '+ech(p.nom)+'">' +
+          '<div class="vignette"><img src="'+img+'" alt="Schéma technique — '+ech(p.nom)+'" loading="lazy" width="400" height="300"></div>' +
           '<div class="corps">' +
-            '<span class="gamme">Gamme '+p.gamme+'</span>' +
-            '<h2>'+p.nom+'</h2>' +
+            '<span class="gamme">Gamme '+ech(p.gamme)+'</span>' +
+            '<h2>'+ech(p.nom)+'</h2>' +
             '<div class="specs-rapides">' +
               (epaisseurDe(p) ? '<span class="tag gris">'+epaisseurDe(p)+'</span>' : '') +
               '<span class="tag '+couleurPuce+'">'+LABELS_HOMOLOGATION[puce]+'</span>' +
