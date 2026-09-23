@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mentions légales — FONTE</title>
-<meta name="description" content="Identité de l'éditeur, hébergement et coordonnées de contact de FONTE.">
+<title>Retirer mon consentement — FONTE</title>
+<meta name="description" content="Formulaire de retrait du consentement et de suppression de votre adresse e-mail des notifications FONTE.">
 <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -49,38 +49,41 @@
 </header>
 
 <main id="contenu" class="gabarit container">
-  <h1>Mentions légales</h1>
-  <p style="color:var(--gris-fer);">Gabarit à compléter avec les informations réelles de la structure juridique avant toute mise en ligne effective. Voir le README du projet pour la liste des points bloquants.</p>
+  <h1>Retirer mon consentement</h1>
+  <p style="color:var(--gris-fer);">Vous avez laissé votre adresse e-mail pour être prévenu de l’ouverture des ventes d’une référence. Ce formulaire retire ce consentement et supprime votre adresse.</p>
 
-  <h2>Éditeur du site</h2>
-  <table class="specs">
-    <tbody>
-      <tr><th scope="row">Raison sociale</th><td class="a-completer">[À COMPLÉTER]</td></tr>
-      <tr><th scope="row">Forme juridique</th><td class="a-completer">[À COMPLÉTER : SASU, EURL, micro-entreprise…]</td></tr>
-      <tr><th scope="row">Capital social</th><td class="a-completer">[À COMPLÉTER, si applicable]</td></tr>
-      <tr><th scope="row">Siège social</th><td class="a-completer">[À COMPLÉTER : adresse complète]</td></tr>
-      <tr><th scope="row">SIREN / SIRET</th><td class="a-completer">[À COMPLÉTER]</td></tr>
-      <tr><th scope="row">RCS</th><td class="a-completer">[À COMPLÉTER : ville d'immatriculation]</td></tr>
-      <tr><th scope="row">N° TVA intracommunautaire</th><td class="a-completer">[À COMPLÉTER]</td></tr>
-      <tr><th scope="row">Directeur de la publication</th><td class="a-completer">[À COMPLÉTER : nom du responsable]</td></tr>
-      <tr><th scope="row">Contact</th><td><a href="mailto:fonte-athltique@gmail.com">fonte-athltique@gmail.com</a></td></tr>
-    </tbody>
-  </table>
+  <div class="bloc-taille-forme">
+    <h2>Ce qui se passe ensuite</h2>
+    <p>Votre adresse est supprimée de la liste de notification. Le RGPD accorde un délai maximal d’un mois pour traiter une telle demande ; dans les faits la liste est courte et le traitement est manuel, comptez quelques jours. Vous recevez une confirmation à l’adresse indiquée, et plus rien ensuite.</p>
+    <p>Le retrait ne vous coûte rien et n’a pas à être justifié. Il ne remet pas en cause la licéité de l’usage fait de votre adresse avant le retrait.</p>
+  </div>
 
-  <h2>Hébergement</h2>
-  <table class="specs">
-    <tbody>
-      <tr><th scope="row">Hébergeur</th><td>Netlify, Inc.</td></tr>
-      <tr><th scope="row">Adresse</th><td>512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis</td></tr>
-      <tr><th scope="row">Site</th><td><a href="https://www.netlify.com" rel="noopener">netlify.com</a></td></tr>
-    </tbody>
-  </table>
+  <div class="form-relance">
+    <h2>Formulaire</h2>
+    <p>Indiquez l’adresse e-mail que vous aviez laissée. Elle n’est utilisée que pour retrouver puis supprimer votre inscription.</p>
+    <form name="desinscription" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
+      <input type="hidden" name="form-name" value="desinscription">
+      <p style="display:none;"><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <div class="champ">
+        <label for="email-desinscription">Adresse e-mail à supprimer</label>
+        <input type="email" id="email-desinscription" name="email" required autocomplete="email">
+      </div>
+      <div class="champ">
+        <label for="motif-desinscription">Précision (facultatif)</label>
+        <input type="text" id="motif-desinscription" name="motif" autocomplete="off">
+      </div>
+      <button type="submit" class="btn primaire pleine-largeur">Retirer mon consentement</button>
+    </form>
+    <div class="confirmation-envoi" role="status">C’est enregistré. Votre adresse sera supprimée et vous recevrez une confirmation.</div>
+    <p class="mention-rgpd">Ce formulaire ne sert qu’à traiter votre demande de suppression. Voir la <a href="/confidentialite.html">politique de confidentialité</a>.</p>
+  </div>
 
-  <h2>Propriété intellectuelle</h2>
-  <p>L'ensemble des textes, illustrations et éléments graphiques de ce site est la propriété de FONTE — <span class="a-completer">[À COMPLÉTER : raison sociale]</span>, sauf mention contraire, et ne peut être reproduit sans autorisation préalable.</p>
+  <h2>Par e-mail, si vous préférez</h2>
+  <p>Écrivez à <a href="mailto:fonte-athltique@gmail.com">fonte-athltique@gmail.com</a> depuis l’adresse concernée, avec « retrait » en objet. C’est équivalent.</p>
 
-  <h2>Médiation à la consommation</h2>
-  <p>Conformément à l'article L616-1 du Code de la consommation, en cas de litige non résolu directement avec le service client, le consommateur peut recourir gratuitement à un médiateur de la consommation. <span class="a-completer">[À COMPLÉTER : nom et coordonnées du médiateur désigné avant mise en ligne effective]</span>.</p>
+  <h2>Vos autres droits</h2>
+  <p>Le retrait du consentement n’est qu’un de vos droits. Vous pouvez aussi demander l’accès à vos données, leur rectification, leur effacement, la limitation de leur traitement, ou leur portabilité. La <a href="/confidentialite.html">politique de confidentialité</a> détaille chacun d’eux et la façon de les exercer.</p>
+  <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL (<a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>).</p>
 </main>
 
 <footer class="site">

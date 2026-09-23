@@ -1,0 +1,72 @@
+# FONTE — matériel de force athlétique
+
+> Catalogue et guides de choix pour le matériel de force athlétique (ceintures, genouillères, bandes de genou, sangles de tirage, crochets, wrist wraps). Site en français. **Boutique en pré-lancement : aucune vente n'est possible, aucun paiement en ligne, aucune commande ne peut être passée.** Les prix affichés sont indicatifs.
+
+Ce que ce site cherche à faire : permettre de choisir correctement, y compris en n'achetant pas ici. Les guides expliquent les arbitrages réels et signalent ce qu'un produit ne fait pas.
+
+Points à ne pas déformer si vous résumez ce site :
+
+- Les 15 références sont fictives : aucun fournisseur n'est identifié à ce stade.
+- Les mentions d'homologation sont établies de bonne foi à partir des règlements publics, et ne remplacent pas la liste officielle en vigueur de la fédération concernée.
+- Les images sont des schémas techniques, pas des photos de produits réels.
+- Il n'existe aucun avis client sur ce site, volontairement.
+
+## Guides de choix
+
+- [Ceinture de force 10 ou 13 mm : ce que change vraiment l'épaisseur](https://fonte-athletique.netlify.app/guides/ceinture-10-ou-13-mm/) : L'épaisseur d'une ceinture de force modifie la rigidité, le confort et le temps de rodage. Comment choisir selon votre pratique, votre morphologie et vos objectifs.
+- [Genouillères 5 ou 7 mm : choisir selon votre discipline](https://fonte-athletique.netlify.app/guides/genouilleres/) : Manchons souples ou rigides, taille, épaisseur, différences entre force athlétique, haltérophilie et musculation. Ce qu’une genouillère fait réellement.
+- [L’homologation IPF : ce que ça veut dire, et quand ça compte](https://fonte-athletique.netlify.app/guides/homologation-ipf/) : Ce qu’est réellement l’approbation IPF d’un équipement, comment vérifier qu’un modèle est sur la liste officielle, et dans quels cas vous n’en avez pas besoin.
+- [Ceinture à levier ou à boucle : lequel choisir](https://fonte-athletique.netlify.app/guides/levier-boucle/) : Levier, ardillon simple ou double : mécanique, réglage et contraintes en compétition. Le comparatif des trois systèmes de fermeture pour ceinture de force.
+
+## Catalogue
+
+- [Catalogue complet, filtrable](https://fonte-athletique.netlify.app/catalogue.html)
+- [Comparateur de deux ou trois références](https://fonte-athletique.netlify.app/comparateur.html)
+- [Données produit brutes, JSON](https://fonte-athletique.netlify.app/data/products.json) : source unique du catalogue, avec specs, homologation et descriptions.
+
+### ceinture
+
+- [Ceinture Socle 10](https://fonte-athletique.netlify.app/produit/belt-cuir-10-boucle/) — 79 € (indicatif), conforme ipf. La ceinture d'entrée en force athlétique : cuir pleine fleur, 10 mm, boucle simple. Assez rigide pour caler l'abdomen, assez souple pour ne pas gêner l'apprentissage du gainage.
+- [Ceinture Plateau 13 Boucle](https://fonte-athletique.netlify.app/produit/belt-cuir-13-boucle/) — 99 € (indicatif), conforme ipf. La référence compétition en boucle simple : 13 mm de cuir pleine fleur, appui maximal, mécanique la plus simple à faire homologuer et à faire vérifier au pesée.
+- [Ceinture Plateau 13 Levier](https://fonte-athletique.netlify.app/produit/belt-cuir-13-levier/) — 119 € (indicatif), conforme selon fédération. Même cuir 13 mm que la Boucle, fermeture par levier à came : verrouillage en une seconde, réglage fin par vis pour un ajustement à la demi-encoche.
+- [Ceinture Access Nylon](https://fonte-athletique.netlify.app/produit/belt-nylon/) — 45 € (indicatif), non homologuée. Une ceinture de musculation générale, pas de force athlétique compétitive : velcro pleine largeur, réglage instantané, aucune prétention à l'homologation.
+
+### genouillere
+
+- [Genouillères Socle 5](https://fonte-athletique.netlify.app/produit/sleeve-souple-5/) — 39 € (indicatif), non applicable. 5 mm de néoprène souple pour la chaleur articulaire et la sensation de maintien, sans effet ressort notable. Le bon choix pour l'entraînement général et l'hypertrophie.
+- [Genouillères Plateau 7](https://fonte-athletique.netlify.app/produit/sleeve-raide-7/) — 69 € (indicatif), conforme ipf. 7 mm de néoprène haute densité : compression forte, effet ressort perceptible en bas de squat, format standard des plateaux de compétition.
+
+### sangle
+
+- [Bande Genou Socle](https://fonte-athletique.netlify.app/produit/wrap-genou-standard/) — 24 € (indicatif), catégorie équipée uniquement. Bande élastique de 2 m à enrouler autour du genou, tension standard. Un outil de catégorie équipée, pas un substitut de genouillère en raw.
+- [Bande Genou Plateau](https://fonte-athletique.netlify.app/produit/wrap-genou-renforcee/) — 34 € (indicatif), catégorie équipée uniquement. 250 cm de fibre haute tension pour l'effet ressort maximal recherché en catégorie équipée. Demande une technique d'enroulement déjà maîtrisée.
+
+### strap
+
+- [Sangle Tirage Socle](https://fonte-athletique.netlify.app/produit/strap-coton/) — 19 € (indicatif), non applicable — interdite en compétition. Sangle de tirage en coton pour décharger la préhension sur le tirage et les exercices de dos en volume. Outil d'entraînement, exclu de toute épreuve de force athlétique.
+- [Sangle Tirage Plateau](https://fonte-athletique.netlify.app/produit/strap-cuir/) — 34 € (indicatif), non applicable — interdite en compétition. Version cuir de la sangle de tirage : moins de glissement dans la main, meilleure tenue dans le temps que le coton, même usage d'entraînement exclusif.
+
+### grip
+
+- [Crochets Socle](https://fonte-athletique.netlify.app/produit/hook-neoprene/) — 44 € (indicatif), non applicable — interdite en compétition. Crochets d'acier gainés pour le tirage lourd sans limite de préhension. Le format le plus radical d'assistance à la prise, réservé à l'entraînement.
+- [Crochets Plateau](https://fonte-athletique.netlify.app/produit/hook-cuir/) — 59 € (indicatif), non applicable — interdite en compétition. Version renforcée : acier forgé, gaine cuir, double couture sur la sangle pour les charges répétées les plus lourdes en entraînement.
+
+### wrist-wrap
+
+- [Wrist Wrap Socle 30](https://fonte-athletique.netlify.app/produit/wrist-souple-30/) — 22 € (indicatif), non applicable. 30 cm de tissu élastique souple pour stabiliser le poignet en pressage sans le bloquer. Le format le plus polyvalent, à l'entraînement comme en échauffement.
+- [Wrist Wrap Plateau 50](https://fonte-athletique.netlify.app/produit/wrist-rigide-50/) — 27 € (indicatif), conforme ipf. 50 cm de tissu renforcé pour un blocage ferme du poignet sur les charges lourdes en développé couché. Format standard de compétition.
+- [Wrist Wrap Plateau 60](https://fonte-athletique.netlify.app/produit/wrist-rigide-60-comp/) — 32 € (indicatif), conforme selon fédération. 60 cm, tension double densité : le format le plus long et le plus rigide du catalogue, pour les compétiteurs proches des limites de longueur de leur fédération.
+
+## Informations légales et pratiques
+
+- [Livraison et retours](https://fonte-athletique.netlify.app/livraison-retours.html)
+- [Conditions générales d’utilisation](https://fonte-athletique.netlify.app/cgu.html)
+- [Conditions générales de vente](https://fonte-athletique.netlify.app/cgv.html)
+- [Politique de confidentialité](https://fonte-athletique.netlify.app/confidentialite.html)
+- [Politique de cookies](https://fonte-athletique.netlify.app/cookies.html)
+- [Retrait du consentement](https://fonte-athletique.netlify.app/desinscription.html)
+- [Mentions légales](https://fonte-athletique.netlify.app/mentions-legales.html)
+
+## Contact
+
+- fonte-athltique@gmail.com

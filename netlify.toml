@@ -34,6 +34,17 @@
   status = 404
   force = true
 
+# Les fiches produit sont désormais des pages statiques sous /produit/<id>/
+# (contenu réel dans le HTML, lisible sans JavaScript). L'ancien gabarit
+# produit.html?id=... redirige vers elles.
+[[redirects]]
+  from = "/produit.html"
+  to = "/produit/:id/"
+  status = 301
+  force = true
+  [redirects.query]
+    id = ":id"
+
 [[headers]]
   for = "/assets/*"
   [headers.values]

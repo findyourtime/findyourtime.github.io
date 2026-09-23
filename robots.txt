@@ -1,0 +1,55 @@
+# FONTE — https://fonte-athletique.netlify.app
+#
+# Le site est ouvert : tout est public, rien n'est réservé. Les robots
+# d'indexation comme les agents conversationnels agissant pour un
+# utilisateur sont autorisés à lire l'intégralité du contenu.
+#
+# Les principaux agents IA sont nommés explicitement ci-dessous. Ils
+# seraient déjà couverts par la règle générale, mais l'ambiguïté d'un
+# robots.txt muet conduit certains d'entre eux à s'abstenir.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# produit.html est un gabarit qui construit la fiche en JavaScript. Les
+# fiches réelles sont les pages statiques sous /produit/<id>/, vers
+# lesquelles il redirige. Inutile de l'indexer.
+Disallow: /produit.html
+
+Sitemap: https://fonte-athletique.netlify.app/sitemap.xml

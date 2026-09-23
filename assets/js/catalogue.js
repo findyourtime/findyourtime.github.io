@@ -157,7 +157,7 @@
     var img = (p.images && p.images[0]) || '';
     return (
       '<article class="carte-produit" style="--i:'+index+'">' +
-        '<a class="lien-carte" href="/produit.html?id='+encodeURIComponent(p.id)+'" aria-label="Voir la fiche '+ech(p.nom)+'">' +
+        '<a class="lien-carte" href="/produit/'+encodeURIComponent(p.id)+'/" aria-label="Voir la fiche '+ech(p.nom)+'">' +
           '<div class="vignette"><img src="'+img+'" alt="Schéma technique — '+ech(p.nom)+'" loading="lazy" width="400" height="300"></div>' +
           '<div class="corps">' +
             '<span class="gamme">Gamme '+ech(p.gamme)+'</span>' +

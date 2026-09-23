@@ -70,7 +70,7 @@
     }).join('');
 
     var ligneLien = '<tr><th scope="row">Fiche complète</th>' + items.map(function(p){
-      return '<td><a href="/produit.html?id='+encodeURIComponent(p.id)+'">Voir la fiche</a></td>';
+      return '<td><a href="/produit/'+encodeURIComponent(p.id)+'/">Voir la fiche</a></td>';
     }).join('') + '</tr>';
 
     zoneTableau.innerHTML = (
