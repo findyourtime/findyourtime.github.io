@@ -8,6 +8,33 @@ site (règle 404 dans `netlify.toml`).
 |---|---|---|
 | `ui-ux-pro-max`, `ui-styling`, `design`, `design-system`, `brand`, `banner-design`, `slides` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) — plugin `ui-ux-pro-max` | 2.13.0 |
 | `impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | 4.3.1 (moteur 0.1.5) |
+| `frontend-design-direction`, `make-interfaces-feel-better`, `accessibility`, `inherit-legacy-style`, `browser-qa`, `brand-discovery` | [affaan-m/ECC](https://github.com/affaan-m/ECC) | 2.2.2 |
+
+## Pourquoi seulement 6 skills sur les 292 d'ECC
+
+ECC n'est pas un skill mais une plateforme : 292 skills, 68 agents, des
+hooks et des commandes. Tout installer coûterait environ 20 000 tokens de
+contexte chargés dans **chaque** session de ce dépôt, pour un catalogue
+très majoritairement hors sujet ici (Kotlin, ClickHouse, Cisco IOS,
+conformité douanière, homelab…). Seuls les skills qui portent sur le
+design web et le graphisme ont été retenus.
+
+Écartés volontairement, même s'ils touchent au design :
+
+- `design-system` d'ECC — même nom que celui de ui-ux-pro-max déjà
+  installé, et bien plus succinct (8 Ko contre 272 Ko). L'installer
+  l'aurait écrasé.
+- `motion-foundations`, `motion-patterns`, `motion-advanced`,
+  `frontend-patterns`, `frontend-a11y` — écrits pour React / Next.js et
+  la bibliothèque `motion/react`. Ce site est en JavaScript natif.
+- `liquid-glass-design`, `ios-icon-gen` — iOS / SwiftUI.
+- `taste`, `taste-application`, `taste-distillation` — malgré leur nom,
+  il s'agit de direction créative pour clips musicaux et montage vidéo.
+- `frontend-slides`, `dashboard-builder`, `ui-to-vue` — hors sujet.
+
+Pour en ajouter d'autres : le dépôt ECC expose des profils
+(`manifests/install-profiles.json`, de `minimal` à `full`) et son propre
+installeur `install.sh`.
 
 ## Mettre à jour
 
